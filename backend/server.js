@@ -6,18 +6,13 @@ const budgetRoutes = require("./routes/budgetRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Use CORS to allow frontend requests
-app.use(
-  cors({
-    origin: 'https://interactive-infographics-india-union-budget.vercel.app',
-    credentials: true,
-  })
-);
+// Enable CORS for all origins (minimal version in first commit)
+app.use(cors());
 
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Root route (for testing)
+// Root route
 app.get("/", (req, res) => {
   res.send("Backend server is running");
 });

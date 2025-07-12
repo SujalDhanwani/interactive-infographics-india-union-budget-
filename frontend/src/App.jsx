@@ -6,8 +6,6 @@ import YearSelector from "./components/YearSelector";
 import BudgetExplanation from "./components/BudgetExplanation";
 import Footer from "./components/Footer";
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 function App() {
   const [budgetData, setBudgetData] = useState([]);
   const [selectedYear, setSelectedYear] = useState(null);
@@ -17,7 +15,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/budget`)
+      .get("http://localhost:5000/api/budget")
       .then((res) => {
         const fetchedData = res.data.budget || [];
         setBudgetData(fetchedData);
