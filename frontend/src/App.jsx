@@ -11,11 +11,13 @@ function App() {
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedBudget, setSelectedBudget] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(false); // Dark mode state
+  const [darkMode, setDarkMode] = useState(false);
+
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/budget")
+      .get(`${API_BASE_URL}/api/budget`)
       .then((res) => {
         const fetchedData = res.data.budget || [];
         setBudgetData(fetchedData);
@@ -35,7 +37,7 @@ function App() {
         console.error("Error fetching budget data:", err);
         setLoading(false);
       });
-  }, []);
+  }, [API_BASE_URL]);
 
   const handleYearChange = (year) => {
     setSelectedYear(year);
